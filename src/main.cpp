@@ -4,7 +4,12 @@
 #include "external/graphics_wrap/wrap_tilemap.h"
 //#include "external/physfs/physfsstream.h"
 #include <unistd.h>
+
+#ifdef SFML_SYSTEM_WINDOWS
+#deinfe EXPORT __declspec(dllexport)
+#else
 #define EXPORT __attribute__((visibility("default")))
+#endif
 
 extern "C" EXPORT int luaopen_SFML(lua_State *l)
 {

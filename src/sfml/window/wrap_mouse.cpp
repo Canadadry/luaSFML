@@ -45,7 +45,7 @@ IMPLEMENT_LUA_CLASS(sfMouse,sf::Mouse)
     X0(getPosition            , FUNCTION ,HAS_RETURN , RET_TYPE(sf::Vector2i) , sf::Mouse::getPosition) \
     X1(setPosition            , FUNCTION ,NO_RETURN  , RET_NONE               , sf::Mouse::setPosition , sf::Vector2i , IS_POINTER) \
     X1(getPositionRelativeto  , FUNCTION ,HAS_RETURN , RET_TYPE(sf::Vector2i) , sf::Mouse::getPosition , sf::RenderWindow,IS_POINTER) \
-    X2(setPositionRelativeto  , FUNCTION ,NO_RETURN  , RET_NONE               , sf::Mouse::setPosition , sf::Vector2i , IS_POINTER, sf::Window,IS_POINTER) \
+    X2(setPositionRelativeto  , FUNCTION ,NO_RETURN  , RET_NONE               , sf::Mouse::setPosition , sf::Vector2i , IS_POINTER, sf::RenderWindow,IS_POINTER) \
 
 
 #define __GO_FOR_IMPLEMENTATION__

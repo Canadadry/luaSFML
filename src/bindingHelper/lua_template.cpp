@@ -40,7 +40,8 @@ template<>
 std::string lua_get<std::string>(lua_State * l,int i)
 {
     size_t lenght = 0;
-    return std::string(luaL_checklstring(l,i,&lenght),lenght);
+    const char* tmp = luaL_checklstring(l,i,&lenght);
+    return std::string(tmp,lenght);
 }
 
 template<>

@@ -6,6 +6,8 @@
 
 #include "../../bindingHelper/marco.hpp"
 #include "../../bindingHelper/lua_template.hpp"
+#include "../system/wrap_vector2i.h"
+#include "../system/wrap_vector2f.h"
 
 
 #define TYPE_TO_BIND sf::Vector2u

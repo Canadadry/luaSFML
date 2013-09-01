@@ -28,6 +28,7 @@ void register_TextEnums(lua_State * l)
 #include "../graphics/wrap_font.h"
 #include "../graphics/wrap_color.h"
 #include "../system/wrap_vector2f.h"
+#include "../graphics/wrap_float_rect.h"
 
 DEFAULT_CTOR_3(sf::Text,std::string,NO_POINTER,sf::Font,IS_POINTER,unsigned int,NO_POINTER)
 
