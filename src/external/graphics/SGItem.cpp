@@ -56,7 +56,9 @@ void SGItem::setHeight(float new_height) { m_height = new_height; }
 
 void SGItem::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+	m_globalTransform = states.transform;
 	states.transform.combine(getTransform());
+
 
 	m_debugContent->setSize(sf::Vector2f(m_width,m_height));
 	target.draw(*m_debugContent,states);
@@ -70,6 +72,46 @@ void SGItem::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		target.draw(*m_childrensItem[i],states);
 	}
+}
+
+bool SGItem::containPoint(sf::Vector2f point) const
+{
+	return (point.x > 0) && (point.y > 0) && (point.x < m_width) && (point.y < m_height);
+}
+
+sf::Vector2f  SGItem::mapToItem(SGItem* finalBasis, sf::Vector2f  point) const
+{
+	sf::Vector2f  ret;
+	//1 convert to parent
+	ret = getTransform().transformPoint(point);
+	//2 convert coord to root
+	ret = m_globalTransform.transformPoint(ret);
+
+	//if finalBasis is null mean we want to map to the root item
+	if(finalBasis != NULL)
+	{
+		// 3 convert to parent of final
+		ret = finalBasis->m_globalTransform.getInverse().transformPoint(ret);
+		// 4 and finally to final
+		ret = finalBasis->getInverseTransform().transformPoint(ret);
+	}
+	return ret;
+
+}
+
+sf::Vector2f  SGItem::mapFromItem(SGItem* initialBasis, sf::Vector2f  point) const
+{
+	sf::Vector2f  ret = point;
+	if(initialBasis != NULL)
+	{
+		ret = initialBasis->getTransform().transformPoint(ret);
+		ret = initialBasis->m_globalTransform.transformPoint(ret);
+	}
+
+	ret = m_globalTransform.getInverse().transformPoint(ret);
+	ret = getInverseTransform().transformPoint(ret);
+
+	return ret;
 }
 
 

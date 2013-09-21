@@ -28,6 +28,12 @@ public:
 	sf::Drawable* content() const;
 
 	SGItem* parentItem() const;	
+
+
+	bool containPoint(sf::Vector2f p) const;
+	sf::Vector2f mapToItem(SGItem* finalBasis, sf::Vector2f point) const;
+	sf::Vector2f mapFromItem(SGItem* initialBasis, sf::Vector2f point) const;
+
 	
 protected:
 	virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
@@ -39,7 +45,7 @@ private:
 	sf::Drawable*              m_content;
 	SGItem*                    m_parentItem;
 	std::vector<SGItem* >      m_childrensItem;
-	sf::Transform              m_globalTransform;
+	mutable sf::Transform      m_globalTransform;
 	
 	void updateGlobalTransform();
 
