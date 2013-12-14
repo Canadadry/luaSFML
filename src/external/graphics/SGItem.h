@@ -29,10 +29,12 @@ public:
 
 	SGItem* parentItem() const;	
 
+	void pick( sf::Vector2f point);
+	void release();
 
 	bool containPoint(sf::Vector2f p) const;
-	sf::Vector2f mapToItem(SGItem* finalBasis, sf::Vector2f point) const;
-	sf::Vector2f mapFromItem(SGItem* initialBasis, sf::Vector2f point) const;
+	sf::Vector2f mapToItem(const SGItem& finalBasis, sf::Vector2f point) const;
+	sf::Vector2f mapFromItem(const SGItem& initialBasis, sf::Vector2f point) const;
 
 	
 protected:
@@ -48,6 +50,12 @@ private:
 	mutable sf::Transform      m_globalTransform;
 	
 	void updateGlobalTransform();
+
+	static SGItem* root;
+	static SGItem* pickedItem;
+
+	void recursivePick(std::vector<SGItem*>& items, sf::Vector2f point);
+
 
 };
 

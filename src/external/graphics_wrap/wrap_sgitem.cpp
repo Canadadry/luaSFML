@@ -27,11 +27,14 @@ SGItem* newDefault(lua_State * L)
 IMPLEMENT_LUA_CLASS(sfeSGItem,SGItem)
 
 #define FUNCTION_TO_BIND \
-    X0(parentItem , METHOD   ,HAS_RETURN , RET_CTOR                , parentItem   )\
-    X0(width      , METHOD   ,HAS_RETURN , RET_TYPE(       float)  , width   )\
-    X0(height     , METHOD   ,HAS_RETURN , RET_TYPE(       float)  , height   )\
-    X1(setWidth   , METHOD   , NO_RETURN , RET_NONE                , setWidth         , float        , NO_POINTER )\
-    X1(setHeight  , METHOD   , NO_RETURN , RET_NONE                , setHeight        , float        , NO_POINTER )\
+    X0(parentItem   , METHOD   ,HAS_RETURN , RET_CTOR                , parentItem   )\
+    X0(width        , METHOD   ,HAS_RETURN , RET_TYPE(       float)  , width        )\
+    X0(height       , METHOD   ,HAS_RETURN , RET_TYPE(       float)  , height       )\
+    X1(setWidth     , METHOD   , NO_RETURN , RET_NONE                , setWidth         , float        , NO_POINTER )\
+    X1(setHeight    , METHOD   , NO_RETURN , RET_NONE                , setHeight        , float        , NO_POINTER )\
+    X1(containPoint , METHOD   ,HAS_RETURN , RET_TYPE(        bool)  , containPoint     ,  sf::Vector2f , IS_POINTER )\
+    X2(mapToItem    , METHOD   ,HAS_RETURN , RET_TYPE(sf::Vector2f)  , mapToItem        , TYPE_TO_BIND , IS_POINTER ,  sf::Vector2f , IS_POINTER)\
+    X2(mapFromItem  , METHOD   ,HAS_RETURN , RET_TYPE(sf::Vector2f)  , mapFromItem      , TYPE_TO_BIND , IS_POINTER ,  sf::Vector2f , IS_POINTER)\
     \
     \
     X0(getPosition , METHOD   ,HAS_RETURN , RET_TYPE(sf::Vector2f)  , getPosition   )\
